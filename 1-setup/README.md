@@ -175,4 +175,4 @@ client, _ := mongo.Connect(opts)
 
 If compressors are set, the Go Driver negotiates with the server to select the first common compressor. For server configuration and defaults, refer to [`networkMessageCompressors`](https://www.mongodb.com/docs/manual/reference/program/mongod/#std-option-mongod.--networkMessageCompressors).
 
-Messages compress when both parties enable network compression; otherwise, messages remain uncompressed
+Messages compress when both parties enable network compression; otherwise, messages remain uncompressed.
