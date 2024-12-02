@@ -8,5 +8,7 @@ This repository contains following topics
     - 1.2 Connect to mongo with `Go` client
     - 1.3 Do some simple stuf with it
     - 1.4 [Comparission with other databases](./1-setup/COMPARISSION.md)
+2. [Basic Query and Indexing](./2-query&indexing/)
+    - 2.1 [Query List](./2-query&indexing/QUERY.md)
 
 Feel free to use and make any change ;)
