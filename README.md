@@ -14,5 +14,7 @@ This repository contains following topics
     - 2.2 [Go Client](./2-query_and_indexing/simple_client.go)
     - 2.3 [Indexing](./2-query_and_indexing/INDEX.md)
     - 2.4 [Explain To Show Indexing Optimization](./2-query_and_indexing/EXPLAIN.md)
+3. [Aggregation Framework & Atomic Operations](./3-aggregation_and_atomic/)
+    - 3.1 [Aggregation Framework Overview](./3-aggregation_and_atomic/AGGREGATION.md)
 
 Feel free to use and make any change ;)
