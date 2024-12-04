@@ -44,6 +44,23 @@ try {
 }
 ```
 
+## Basic Text Search
+Inorder to use following queries you have to define text index first on given collection to have better query timing.
+
+```js
+db.products.find({ $text: { $search: "laptop" } });
+db.products.find({ $text: { $search: "laptop \"gamind\"" } }); // means gaming must be in document
+db.products.find({ $text: { $search: "\"gaming laptop\"" } }); // exact phrase
+db.products.find({ $text: { $search: "laptop -gaming" } }); // laptop but not gaming
+db.products.find({ $text: { $search: "laptop desktop" } }); // search for laptop or desktop
+```
+
+Inorder to search document and sort them with document relevant score use followign query the text search score provides a number that rates the relevancy of the document based on how many times the word appeared in the document.
+
+```js
+db.products.find({ $text: { $search: "laptop" } }, { score: { $meta: "textScore" } }).sort({ score: { $meta: "textScore" } });
+```
+
 ## Additional Notes
 - Mongodb shell used `javascrypt` allowing you to write loops and ocnditions and etc.
 - Remember to use index to perform queries in better time, but keep in mind that indexing also have a cost.
