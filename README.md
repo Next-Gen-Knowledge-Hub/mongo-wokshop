@@ -16,5 +16,6 @@ This repository contains following topics
     - 2.4 [Explain To Show Indexing Optimization](./2-query_and_indexing/EXPLAIN.md)
 3. Aggregation Framework & Atomic Operations
     - 3.1 [Aggregation Framework Overview & Map Reduce Example](./3-aggregation_and_atomic/AGGREGATION.md)
+    - 3.2 [Atomic Operations](./3-aggregation_and_atomic/ATOMIC.md)
 
 Feel free to use and make any change ;)
