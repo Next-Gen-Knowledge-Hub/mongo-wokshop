@@ -48,5 +48,7 @@ try {
 - Mongodb shell used `javascrypt` allowing you to write loops and ocnditions and etc.
 - Remember to use index to perform queries in better time, but keep in mind that indexing also have a cost.
 
+## How drivers work
+- Object-id generation process are done in driver-side instead of server-side inorder to prevent bottomleck on adding _id field into database collections. uniquness are guaranteed in the context of driver.
 
 This table provides a concise yet comprehensive reference for MongoDB shell commands and includes examples of their usage.
