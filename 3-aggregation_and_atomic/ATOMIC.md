@@ -129,6 +129,31 @@ In this example:
 - The `users` and `accounts` collections are updated as part of the same transaction.
 - If any operation fails, the transaction is aborted using `abortTransaction()`, ensuring atomicity.
 
+## 6. Delete in Transactions
+
+If you're performing a `multi-document` or `multi-collection` delete operation and need to guarantee that either all operations succeed or none are applied, you can use a transaction.
+
+Example: Delete in `Transaction`
+
+```javascript
+const session = client.startSession();
+
+try {
+  session.startTransaction();
+
+  db.orders.deleteOne({ _id: 1 }, { session });
+  db.users.deleteOne({ _id: 1 }, { session });
+
+  session.commitTransaction();
+} catch (error) {
+  session.abortTransaction();
+} finally {
+  session.endSession();
+}
+```
+
+This example deletes a `document` from both `orders` and `users` collections within a single transaction. If any operation fails, the transaction is aborted, and no changes are made.
+
 ## Conclusion
 
 MongoDB’s atomic update operations ensure that changes to documents are safe and consistent. Whether you are performing a simple update or a complex multi-document transaction, MongoDB provides several options to guarantee the integrity of your data. Understanding these atomic update operations is critical for building robust and reliable applications with MongoDB.
