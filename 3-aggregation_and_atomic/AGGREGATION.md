@@ -169,6 +169,41 @@ db.orders.aggregate([
 
 - **$lookup** joins documents from the users collection where userId in orders matches the _id in users.
 
+## 6 Map Reduce Example
+
+```js
+db.orders.aggregate([
+        {"$match": {"purchase_data":{"$gte" : new Date(2010, 0, 1)}}},
+        {"$group": {
+        "_id": {"year" : {"$year" :"$purchase_data"},
+        "month" : {"$month" : "$purchase_data"}},
+        "count": {"$sum":1},
+        "total": {"$sum":"$sub_total"}}},
+        {"$sort": {"_id":-1}}]);
+```
+
+```js
+map = function() {
+            var shipping_month = (this.purchase_data.getMonth()+1) +
+            '-' + this.purchase_data.getFullYear();
+            var tmpItems = 0;
+            this.line_items.forEach(function(item) {
+                tmpItems += item.quantity;
+            });
+            emit(shipping_month, {order_total: this.sub_total, items_total: tmpItems});
+};
+reduce = function(key, values) {
+            var result = { order_total: 0, items_total: 0 };
+            values.forEach(function(value){
+                result.order_total += value.order_total;
+                result.items_total += value.items_total;
+            });
+            return ( result );
+};
+filter = {purchase_data: {$gte: new Date(2010, 0, 1)}};
+db.orders.mapReduce(map, reduce, {query: filter, out: 'totals'});
+```
+
 ## Conclusion
 
 MongoDB’s aggregation framework is a powerful tool that enables complex data transformations and computations within the database itself. By using stages like `$match`, `$group`, `$sort`, `$project`, and `others`, you can perform a wide range of operations to summarize and manipulate data. Understanding the aggregation pipeline and its operators is essential for working with large datasets and performing advanced analytics in MongoDB.
