@@ -69,3 +69,31 @@ db.products.find({ $text: { $search: "laptop" } }, { score: { $meta: "textScore"
 - Object-id generation process are done in driver-side instead of server-side inorder to prevent bottomleck on adding _id field into database collections. uniquness are guaranteed in the context of driver.
 
 This table provides a concise yet comprehensive reference for MongoDB shell commands and includes examples of their usage.
+
+### Example Queries
+
+```js
+product = db.products.findOne({'slug': 'wheel-barrow-9092'})
+db.categories.findOne({'_id': product['main_cat_id']})
+db.reviews.find({'product_id': product['_id']})
+db.reviews.find({'product_id': product['_id']}).sort({'helpful_votes': -1}).skip(0).limit(12)
+db.users.find({'addresses.zip': {'$gt': 10019, '$lt': 10040}})
+
+db.users.find({'last_name': "Banker"})
+db.users.find({'first_name': "Smith", birth_year: 1975})
+db.users.find({'birth_year': {'$gte': 1985}, 'birth_year': {'$lte': 2015}})
+db.products.find({'details.color': {'$nin': ["black", "blue"]}})
+db.products.find({'details.manufacturer': 'Acme', tags: {$ne: "gardening"} })
+db.users.find({'age': {'$not': {'$lte': 30}}})
+db.products.find({'$or': [{'details.color': 'blue'}, {'details.manufacturer': 'Acme'}]})
+db.products.find({'details.color': {$exists: false}}) // query documents wich didn't contains given key
+db.products.find({'details.manufacturer': "Acme"}) // query sub-documents
+db.reviews.find({'$where': "this.helpful_votes > 3"}) // execute JS
+db.users.find({}, {'username': 1}) // select username from table users
+db.products.find({}, {'reviews': {$slice: [24, 12]}}) // paginate over items
+db.reviews.find({}).sort({'rating': -1})
+
+db.docs.find({}).skip(500000).limit(10).sort({date: -1}) // beavare of using skip instead use following query
+// better to use following query instead
+db.docs.find({'date': {'$gt': previous_page_date}}).limit(10).sort({'date': -1})
+```
