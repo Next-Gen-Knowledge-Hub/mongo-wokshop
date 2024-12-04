@@ -18,5 +18,8 @@ This repository contains following topics
     - 3.1 [Aggregation Framework Overview & Map Reduce Example](./3-aggregation_and_atomic/AGGREGATION.md)
     - 3.2 [Atomic Operations](./3-aggregation_and_atomic/ATOMIC.md)
     - 3.3 [Plugable Storages](./3-aggregation_and_atomic/PLUGABLE_STORAGE.md)
+4. Replication & Sharding
+    - 4.1 [Replication](./4-replication_and_sharding/REPLICATION.md)
+    - 4.2 [Sharding](./4-replication_and_sharding/SHARDING.md)
 
 Feel free to use and make any change ;)
