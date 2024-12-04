@@ -147,7 +147,7 @@ db.collection.insertOne({ name: "Alice" }, { writeConcern: { w: "majority" } });
 - _WRITE CONCERNS_
 - _JOURNALING_
 - _READ SCALING_ (Attempt to read data from secondary replicas)
-- _TAGGING_ (connect to specific cluster with tagging) ask gpt for sample code
+- _TAGGING_ (connect to specific cluster with tagging) you can use that operation for `multi tenancy` too.
 
 # Conclusion
 
