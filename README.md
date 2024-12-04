@@ -17,5 +17,6 @@ This repository contains following topics
 3. Aggregation Framework & Atomic Operations
     - 3.1 [Aggregation Framework Overview & Map Reduce Example](./3-aggregation_and_atomic/AGGREGATION.md)
     - 3.2 [Atomic Operations](./3-aggregation_and_atomic/ATOMIC.md)
+    - 3.3 [Plugable Storages](./3-aggregation_and_atomic/PLUGABLE_STORAGE.md)
 
 Feel free to use and make any change ;)
