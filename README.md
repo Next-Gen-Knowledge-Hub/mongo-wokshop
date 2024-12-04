@@ -12,5 +12,6 @@ This repository contains following topics
     - 2.1 [Query List](./2-query_and_indexing/QUERY.md)
     - 2.2 [Go Client](./2-query_and_indexing/simple_client.go)
     - 2.3 [Indexing](./2-query_and_indexing/INDEX.md)
+    - 2.4 [Explain](./2-query_and_indexing/EXPLAIN.md)
 
 Feel free to use and make any change ;)
