@@ -128,6 +128,30 @@ db.sales.aggregate([
 - **$match** filters categories with total sales greater than 1000.
 - **$sort** sorts the result by totalSales in descending order.
 
+```js
+db.orders.aggregate([
+    {$match: {purchase_data: {$gte: new Date(2010, 0, 1)}}},
+        {$group: {
+            _id: {year : {$year :'$purchase_data'},
+                  month: {$month :'$purchase_data'}},
+            count: {$sum:1},
+            total: {$sum:'$sub_total'}}},
+         {$sort: {_id:-1}}
+    ]);
+```
+
+- **$match** read documents with purchase date after `2010/0/1`.
+- **$group** count purchases and total with `year` and `month`.
+- **$sort** order purchases ascending.
+
+```js
+db.x.aggregates([], {explain:true, allowDiskUse:true, cursor: {batchSize: n}})
+```
+
+- **explain** inorder to show pipelin performance.
+- **allow disk use** use dist for big pipeline stages.
+- **batch size** set a boundry on amount of data in each batch size.
+
 ## 5. Aggregation with Lookup (Joins)
 
 The `$lookup` stage allows you to join documents from another collection, similar to SQL JOIN.
